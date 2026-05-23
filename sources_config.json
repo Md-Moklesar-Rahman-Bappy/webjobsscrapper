@@ -45,6 +45,21 @@
       }
     },
     {
+      "name": "RemotiveData",
+      "enabled": true,
+      "method": "http",
+      "type": "json_api",
+      "url": "https://remotive.com/api/remote-jobs?category=data",
+      "json_path": "jobs",
+      "fields": {
+        "title": "title",
+        "company": "company_name",
+        "link": "url",
+        "description": "description",
+        "date": "publication_date"
+      }
+    },
+    {
       "name": "LinkedIn",
       "enabled": true,
       "method": "playwright",

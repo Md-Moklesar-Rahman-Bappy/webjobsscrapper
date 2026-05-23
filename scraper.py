@@ -140,10 +140,7 @@ def main():
             scored = []
 
     print("\nLoading top matching jobs from database...")
-    saved_jobs = get_saved_jobs(min_score=1.0, limit=MAX_JOBS_PER_RUN)
-
-    if not saved_jobs:
-        saved_jobs = get_saved_jobs(min_score=0, limit=MAX_JOBS_PER_RUN)
+    saved_jobs = get_saved_jobs(min_score=0, limit=MAX_JOBS_PER_RUN)
 
     if saved_jobs:
         today = datetime.now().strftime("%Y-%m-%d")

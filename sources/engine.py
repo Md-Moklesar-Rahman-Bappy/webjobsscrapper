@@ -264,6 +264,8 @@ def scrape_playwright(source):
                     link = (link or "").strip()
                     if not title or not link:
                         continue
+                    if link.startswith("/"):
+                        link = urljoin(source["url"], link)
                     if not source_has_go(source["name"], title, desc):
                         continue
 
