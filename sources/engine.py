@@ -175,14 +175,14 @@ def scrape_playwright(source):
             page = context.new_page()
 
             # Login if required
-            if login_config.get("required", False) and username and password:
-                if username and password:
-                    print(f"    Logging into {source['name']}...")
-                    page.goto(login_url, wait_until="domcontentloaded", timeout=30000)
-                    page.fill(login_config["username_field"], username)
-                    page.fill(login_config["password_field"], password)
-                    page.click(login_config["submit_button"])
-                    time.sleep(3)
+            login_url = login_config.get("url", "")
+            if login_config.get("required", False) and username and password and login_url:
+                print(f"    Logging into {source['name']}...")
+                page.goto(login_url, wait_until="domcontentloaded", timeout=30000)
+                page.fill(login_config["username_field"], username)
+                page.fill(login_config["password_field"], password)
+                page.click(login_config["submit_button"])
+                time.sleep(3)
 
             # Navigate to search URL
             print(f"    Loading {source['name']}...")

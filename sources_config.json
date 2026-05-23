@@ -1,12 +1,25 @@
 {
-  "_comment": "Add any job website here. Set 'method': 'playwright' for JS-rendered sites, 'http' for simple APIs/RSS.",
+  "_comment": "Job scraper configuration. Add any job site here. 'method: http' for APIs/RSS, 'method: playwright' for JS sites.",
   "sources": [
+    {
+      "name": "EuRemoteJobs",
+      "enabled": true,
+      "method": "http",
+      "type": "html_table",
+      "url": "https://euremotejobs.com/?s=golang",
+      "card_selector": "article",
+      "fields": {
+        "title": { "selector": "h2", "attribute": "innerText" },
+        "link": { "selector": "a", "attribute": "href" },
+        "date": { "selector": "span.posted-date, time, .date", "attribute": "innerText" }
+      }
+    },
     {
       "name": "RemotiveAPI",
       "enabled": true,
       "method": "http",
-      "url": "https://remotive.com/api/remote-jobs?category=software-dev",
       "type": "json_api",
+      "url": "https://remotive.com/api/remote-jobs?category=software-dev",
       "json_path": "jobs",
       "fields": {
         "title": "title",
@@ -14,17 +27,14 @@
         "link": "url",
         "description": "description",
         "date": "publication_date"
-      },
-      "filter": {
-        "keywords": ["golang", " go ", "gopher"]
       }
     },
     {
       "name": "RemotiveDevOps",
       "enabled": true,
       "method": "http",
-      "url": "https://remotive.com/api/remote-jobs?category=devops-sysadmin",
       "type": "json_api",
+      "url": "https://remotive.com/api/remote-jobs?category=devops-sysadmin",
       "json_path": "jobs",
       "fields": {
         "title": "title",
@@ -32,9 +42,6 @@
         "link": "url",
         "description": "description",
         "date": "publication_date"
-      },
-      "filter": {
-        "keywords": ["golang", " go ", "gopher"]
       }
     },
     {
@@ -54,203 +61,193 @@
       "wait_for_selector": ".jobs-search-results-list",
       "card_selector": ".job-card-container, .jobs-search-results__list-item",
       "fields": {
-        "title": {
-          "selector": ".job-card-list__title, .base-card__full-link",
-          "attribute": "innerText"
-        },
-        "company": {
-          "selector": ".job-card-container__company-name, .base-card__subtitle",
-          "attribute": "innerText"
-        },
-        "link": {
-          "selector": ".job-card-list__title, .base-card__full-link",
-          "attribute": "href"
-        },
-        "description": {
-          "selector": ".job-card-container__description, .job-card-list__description",
-          "attribute": "innerText"
-        }
+        "title": { "selector": ".job-card-list__title, .base-card__full-link", "attribute": "innerText" },
+        "company": { "selector": ".job-card-container__company-name, .base-card__subtitle", "attribute": "innerText" },
+        "link": { "selector": ".job-card-list__title, .base-card__full-link", "attribute": "href" },
+        "description": { "selector": ".job-card-container__description, .job-card-list__description", "attribute": "innerText" }
       },
-      "pagination": {
-        "scroll": true,
-        "scroll_times": 5
-      }
+      "pagination": { "scroll": true, "scroll_times": 5 }
     },
     {
       "name": "Indeed",
       "enabled": true,
       "method": "playwright",
       "url": "https://www.indeed.com/jobs?q=golang+remote&fromage=7&sort=date",
-      "login": {
-        "required": false,
-        "url": "https://secure.indeed.com/auth",
-        "username_field": "#ifl-InputFormField-3",
-        "password_field": "#ifl-InputFormField-7",
-        "submit_button": "button[type='submit']"
-      },
       "wait_for_selector": ".job_seen_beacon, .jobsearch-ResultsList",
       "card_selector": ".job_seen_beacon, .jobsearch-ResultsList > div, div[data-testid='job-card']",
       "fields": {
-        "title": {
-          "selector": "h2 a, a.jobtitle, span[data-testid='job-title']",
-          "attribute": "innerText"
-        },
-        "company": {
-          "selector": "span.companyName, span[data-testid='company-name']",
-          "attribute": "innerText"
-        },
-        "link": {
-          "selector": "h2 a, a.jobtitle, a[data-testid='job-title']",
-          "attribute": "href"
-        },
-        "date": {
-          "selector": "span.date, span[data-testid='job-date']",
-          "attribute": "innerText"
-        }
+        "title": { "selector": "h2 a", "attribute": "innerText" },
+        "company": { "selector": "span.companyName", "attribute": "innerText" },
+        "link": { "selector": "h2 a", "attribute": "href" }
       },
-      "pagination": {
-        "scroll": true,
-        "scroll_times": 3
+      "pagination": { "scroll": true, "scroll_times": 3 }
+    },
+    {
+      "name": "WelcomeToTheJungle",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://app.welcometothejungle.com/jobs?query=golang",
+      "login": {
+        "required": true,
+        "url": "https://app.welcometothejungle.com/auth/sign-in",
+        "username_field": "input[name='email']",
+        "password_field": "input[name='password']",
+        "submit_button": "button[type='submit']",
+        "username_env": "WTTJ_EMAIL",
+        "password_env": "WTTJ_PASS"
+      },
+      "wait_for_selector": "a[href*='/jobs/']",
+      "card_selector": "a[href*='/jobs/']",
+      "fields": {
+        "title": { "selector": "", "attribute": "innerText" },
+        "company": { "selector": "", "attribute": "innerText" },
+        "link": { "selector": "", "attribute": "href" }
+      },
+      "pagination": { "scroll": true, "scroll_times": 5 }
+    },
+    {
+      "name": "BuiltIn",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://builtin.com/jobs?search=golang&remote=all",
+      "login": {
+        "required": true,
+        "url": "https://accounts.builtin.com/Login",
+        "username_field": "input[name='email'], input[type='email'], input[id*='email']",
+        "password_field": "input[name='password'], input[type='password']",
+        "submit_button": "button[type='submit']",
+        "username_env": "BUILTIN_EMAIL",
+        "password_env": "BUILTIN_PASS"
+      },
+      "wait_for_selector": "article, div[class*=job]",
+      "card_selector": "article, div[class*=job]",
+      "fields": {
+        "title": { "selector": "h2, h3", "attribute": "innerText" },
+        "company": { "selector": "", "attribute": "innerText" },
+        "link": { "selector": "a[href]", "attribute": "href" }
+      },
+      "pagination": { "scroll": true, "scroll_times": 5 }
+    },
+    {
+      "name": "Workable",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://jobs.workable.com/search?keywords=golang&remote=on",
+      "wait_for_selector": "article, li[class*=job], div[class*=card]",
+      "card_selector": "article, li[class*=job], div[class*=card], a[href*='/jobs/']",
+      "fields": {
+        "title": { "selector": "h2, h3, span[class*=title]", "attribute": "innerText" },
+        "company": { "selector": "span[class*=company], div[class*=company]", "attribute": "innerText" },
+        "link": { "selector": "a[href]", "attribute": "href" },
+        "description": { "selector": "", "attribute": "innerText" }
+      },
+      "pagination": { "scroll": true, "scroll_times": 5 }
+    },
+    {
+      "name": "HiringCafe",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://hiring.cafe/search?q=golang",
+      "wait_for_selector": "article, div[class*=job], div[class*=card]",
+      "card_selector": "article, div[class*=job], div[class*=card], a[href*='/job/']",
+      "fields": {
+        "title": { "selector": "h2, h3, span[class*=title]", "attribute": "innerText" },
+        "company": { "selector": "span[class*=company], div[class*=company]", "attribute": "innerText" },
+        "link": { "selector": "a[href]", "attribute": "href" }
+      },
+      "pagination": { "scroll": true, "scroll_times": 5 }
+    },
+    {
+      "name": "Greenhouse",
+      "enabled": false,
+      "method": "playwright",
+      "url": "https://my.greenhouse.io/",
+      "_note": "my.greenhouse.io is a candidate application portal, NOT a job search board. No centralized job search available. Disabled by default.",
+      "wait_for_selector": "body",
+      "card_selector": "div[class*=job], a[href*='job']",
+      "fields": {
+        "title": { "selector": "", "attribute": "innerText" },
+        "link": { "selector": "a[href]", "attribute": "href" }
       }
     },
     {
       "name": "GoogleJobs",
-      "enabled": true,
+      "enabled": false,
       "method": "playwright",
       "url": "https://www.google.com/search?q=golang+remote&ibp=htl;jobs",
       "wait_for_selector": "div[role='listitem'], div.job",
       "card_selector": "div[role='listitem'], div.job",
       "fields": {
-        "title": {
-          "selector": "div[role='heading'], h3, .job-title",
-          "attribute": "innerText"
-        },
-        "company": {
-          "selector": ".company-name, .job-company, div[data-company*='']",
-          "attribute": "innerText"
-        },
-        "link": {
-          "selector": "a",
-          "attribute": "href"
-        }
+        "title": { "selector": "div[role='heading'], h3, .job-title", "attribute": "innerText" },
+        "company": { "selector": ".company-name, .job-company", "attribute": "innerText" },
+        "link": { "selector": "a", "attribute": "href" }
       },
-      "pagination": {
-        "scroll": true,
-        "scroll_times": 3
-      }
+      "pagination": { "scroll": true, "scroll_times": 3 }
     },
     {
       "name": "WeWorkRemotely",
-      "enabled": true,
+      "enabled": false,
       "method": "playwright",
       "url": "https://weworkremotely.com/remote-jobs/search?term=golang",
       "wait_for_selector": "article, section.jobs",
-      "card_selector": "article, .job",
+      "card_selector": "article",
       "fields": {
-        "title": {
-          "selector": ".title, span.title, h2",
-          "attribute": "innerText"
-        },
-        "company": {
-          "selector": ".company, span.company",
-          "attribute": "innerText"
-        },
-        "link": {
-          "selector": "a",
-          "attribute": "href"
-        }
+        "title": { "selector": ".title, h2", "attribute": "innerText" },
+        "company": { "selector": ".company", "attribute": "innerText" },
+        "link": { "selector": "a", "attribute": "href" }
       }
     },
     {
       "name": "Dice",
-      "enabled": true,
+      "enabled": false,
       "method": "playwright",
       "url": "https://www.dice.com/jobs?q=golang&countryCode=US&radius=30&fields=REMOTE&postedDate=7",
       "wait_for_selector": ".card, .search-card",
       "card_selector": ".card, .search-card",
       "fields": {
-        "title": {
-          "selector": "a.title, h5 a",
-          "attribute": "innerText"
-        },
-        "company": {
-          "selector": ".company-name, .employer",
-          "attribute": "innerText"
-        },
-        "link": {
-          "selector": "a.title, h5 a",
-          "attribute": "href"
-        }
+        "title": { "selector": "a.title, h5 a", "attribute": "innerText" },
+        "company": { "selector": ".company-name", "attribute": "innerText" },
+        "link": { "selector": "a.title, h5 a", "attribute": "href" }
       }
     },
     {
       "name": "ZipRecruiter",
-      "enabled": true,
+      "enabled": false,
       "method": "playwright",
       "url": "https://www.ziprecruiter.com/candidate/search?search=golang&remote=1&days=7",
       "wait_for_selector": ".job_result, .job-card",
       "card_selector": ".job_result, .job-card, .result",
       "fields": {
-        "title": {
-          "selector": "h2 a, .title a, .just_job_title",
-          "attribute": "innerText"
-        },
-        "company": {
-          "selector": ".company, .name",
-          "attribute": "innerText"
-        },
-        "link": {
-          "selector": "h2 a, .title a",
-          "attribute": "href"
-        }
+        "title": { "selector": "h2 a, .title a", "attribute": "innerText" },
+        "company": { "selector": ".company, .name", "attribute": "innerText" },
+        "link": { "selector": "h2 a, .title a", "attribute": "href" }
       },
-      "pagination": {
-        "scroll": true,
-        "scroll_times": 5
-      }
+      "pagination": { "scroll": true, "scroll_times": 5 }
     },
     {
       "name": "Glassdoor",
-      "enabled": true,
+      "enabled": false,
       "method": "playwright",
       "url": "https://www.glassdoor.com/Job/jobs.htm?sc.keyword=golang&remoteWorkType=1&fromAge=7",
       "wait_for_selector": ".jobListing, .react-job-listing",
       "card_selector": ".jobListing, .react-job-listing",
       "fields": {
-        "title": {
-          "selector": "a.job-title, .job-title",
-          "attribute": "innerText"
-        },
-        "company": {
-          "selector": ".employer-name, .company-name",
-          "attribute": "innerText"
-        },
-        "link": {
-          "selector": "a.job-title",
-          "attribute": "href"
-        }
+        "title": { "selector": "a.job-title", "attribute": "innerText" },
+        "company": { "selector": ".employer-name", "attribute": "innerText" },
+        "link": { "selector": "a.job-title", "attribute": "href" }
       }
     },
     {
       "name": "Craigslist",
-      "enabled": true,
+      "enabled": false,
       "method": "http",
       "type": "html_table",
       "url": "https://newyork.craigslist.org/search/sof?query=golang&is_paid=all&is_remote=1&postedToday=1&sort=date",
       "card_selector": "div.result-info",
       "fields": {
-        "title": {
-          "selector": "a.result-title",
-          "attribute": "innerText"
-        },
-        "link": {
-          "selector": "a.result-title",
-          "attribute": "href"
-        },
-        "date": {
-          "selector": "span.result-date",
-          "attribute": "innerText"
-        }
+        "title": { "selector": "a.result-title", "attribute": "innerText" },
+        "link": { "selector": "a.result-title", "attribute": "href" },
+        "date": { "selector": "span.result-date", "attribute": "innerText" }
       }
     }
   ]
