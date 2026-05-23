@@ -1,0 +1,257 @@
+{
+  "_comment": "Add any job website here. Set 'method': 'playwright' for JS-rendered sites, 'http' for simple APIs/RSS.",
+  "sources": [
+    {
+      "name": "RemotiveAPI",
+      "enabled": true,
+      "method": "http",
+      "url": "https://remotive.com/api/remote-jobs?category=software-dev",
+      "type": "json_api",
+      "json_path": "jobs",
+      "fields": {
+        "title": "title",
+        "company": "company_name",
+        "link": "url",
+        "description": "description",
+        "date": "publication_date"
+      },
+      "filter": {
+        "keywords": ["golang", " go ", "gopher"]
+      }
+    },
+    {
+      "name": "RemotiveDevOps",
+      "enabled": true,
+      "method": "http",
+      "url": "https://remotive.com/api/remote-jobs?category=devops-sysadmin",
+      "type": "json_api",
+      "json_path": "jobs",
+      "fields": {
+        "title": "title",
+        "company": "company_name",
+        "link": "url",
+        "description": "description",
+        "date": "publication_date"
+      },
+      "filter": {
+        "keywords": ["golang", " go ", "gopher"]
+      }
+    },
+    {
+      "name": "LinkedIn",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://www.linkedin.com/jobs/search/?keywords=golang&f_WT=2&f_TPR=r604800&sortBy=DD",
+      "login": {
+        "required": true,
+        "url": "https://www.linkedin.com/login",
+        "username_field": "#username",
+        "password_field": "#password",
+        "submit_button": "button[type='submit']",
+        "username_env": "LINKEDIN_EMAIL",
+        "password_env": "LINKEDIN_PASS"
+      },
+      "wait_for_selector": ".jobs-search-results-list",
+      "card_selector": ".job-card-container, .jobs-search-results__list-item",
+      "fields": {
+        "title": {
+          "selector": ".job-card-list__title, .base-card__full-link",
+          "attribute": "innerText"
+        },
+        "company": {
+          "selector": ".job-card-container__company-name, .base-card__subtitle",
+          "attribute": "innerText"
+        },
+        "link": {
+          "selector": ".job-card-list__title, .base-card__full-link",
+          "attribute": "href"
+        },
+        "description": {
+          "selector": ".job-card-container__description, .job-card-list__description",
+          "attribute": "innerText"
+        }
+      },
+      "pagination": {
+        "scroll": true,
+        "scroll_times": 5
+      }
+    },
+    {
+      "name": "Indeed",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://www.indeed.com/jobs?q=golang+remote&fromage=7&sort=date",
+      "login": {
+        "required": false,
+        "url": "https://secure.indeed.com/auth",
+        "username_field": "#ifl-InputFormField-3",
+        "password_field": "#ifl-InputFormField-7",
+        "submit_button": "button[type='submit']"
+      },
+      "wait_for_selector": ".job_seen_beacon, .jobsearch-ResultsList",
+      "card_selector": ".job_seen_beacon, .jobsearch-ResultsList > div, div[data-testid='job-card']",
+      "fields": {
+        "title": {
+          "selector": "h2 a, a.jobtitle, span[data-testid='job-title']",
+          "attribute": "innerText"
+        },
+        "company": {
+          "selector": "span.companyName, span[data-testid='company-name']",
+          "attribute": "innerText"
+        },
+        "link": {
+          "selector": "h2 a, a.jobtitle, a[data-testid='job-title']",
+          "attribute": "href"
+        },
+        "date": {
+          "selector": "span.date, span[data-testid='job-date']",
+          "attribute": "innerText"
+        }
+      },
+      "pagination": {
+        "scroll": true,
+        "scroll_times": 3
+      }
+    },
+    {
+      "name": "GoogleJobs",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://www.google.com/search?q=golang+remote&ibp=htl;jobs",
+      "wait_for_selector": "div[role='listitem'], div.job",
+      "card_selector": "div[role='listitem'], div.job",
+      "fields": {
+        "title": {
+          "selector": "div[role='heading'], h3, .job-title",
+          "attribute": "innerText"
+        },
+        "company": {
+          "selector": ".company-name, .job-company, div[data-company*='']",
+          "attribute": "innerText"
+        },
+        "link": {
+          "selector": "a",
+          "attribute": "href"
+        }
+      },
+      "pagination": {
+        "scroll": true,
+        "scroll_times": 3
+      }
+    },
+    {
+      "name": "WeWorkRemotely",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://weworkremotely.com/remote-jobs/search?term=golang",
+      "wait_for_selector": "article, section.jobs",
+      "card_selector": "article, .job",
+      "fields": {
+        "title": {
+          "selector": ".title, span.title, h2",
+          "attribute": "innerText"
+        },
+        "company": {
+          "selector": ".company, span.company",
+          "attribute": "innerText"
+        },
+        "link": {
+          "selector": "a",
+          "attribute": "href"
+        }
+      }
+    },
+    {
+      "name": "Dice",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://www.dice.com/jobs?q=golang&countryCode=US&radius=30&fields=REMOTE&postedDate=7",
+      "wait_for_selector": ".card, .search-card",
+      "card_selector": ".card, .search-card",
+      "fields": {
+        "title": {
+          "selector": "a.title, h5 a",
+          "attribute": "innerText"
+        },
+        "company": {
+          "selector": ".company-name, .employer",
+          "attribute": "innerText"
+        },
+        "link": {
+          "selector": "a.title, h5 a",
+          "attribute": "href"
+        }
+      }
+    },
+    {
+      "name": "ZipRecruiter",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://www.ziprecruiter.com/candidate/search?search=golang&remote=1&days=7",
+      "wait_for_selector": ".job_result, .job-card",
+      "card_selector": ".job_result, .job-card, .result",
+      "fields": {
+        "title": {
+          "selector": "h2 a, .title a, .just_job_title",
+          "attribute": "innerText"
+        },
+        "company": {
+          "selector": ".company, .name",
+          "attribute": "innerText"
+        },
+        "link": {
+          "selector": "h2 a, .title a",
+          "attribute": "href"
+        }
+      },
+      "pagination": {
+        "scroll": true,
+        "scroll_times": 5
+      }
+    },
+    {
+      "name": "Glassdoor",
+      "enabled": true,
+      "method": "playwright",
+      "url": "https://www.glassdoor.com/Job/jobs.htm?sc.keyword=golang&remoteWorkType=1&fromAge=7",
+      "wait_for_selector": ".jobListing, .react-job-listing",
+      "card_selector": ".jobListing, .react-job-listing",
+      "fields": {
+        "title": {
+          "selector": "a.job-title, .job-title",
+          "attribute": "innerText"
+        },
+        "company": {
+          "selector": ".employer-name, .company-name",
+          "attribute": "innerText"
+        },
+        "link": {
+          "selector": "a.job-title",
+          "attribute": "href"
+        }
+      }
+    },
+    {
+      "name": "Craigslist",
+      "enabled": true,
+      "method": "http",
+      "type": "html_table",
+      "url": "https://newyork.craigslist.org/search/sof?query=golang&is_paid=all&is_remote=1&postedToday=1&sort=date",
+      "card_selector": "div.result-info",
+      "fields": {
+        "title": {
+          "selector": "a.result-title",
+          "attribute": "innerText"
+        },
+        "link": {
+          "selector": "a.result-title",
+          "attribute": "href"
+        },
+        "date": {
+          "selector": "span.result-date",
+          "attribute": "innerText"
+        }
+      }
+    }
+  ]
+}

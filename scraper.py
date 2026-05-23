@@ -1,12 +1,25 @@
-import sys
-import os
-import csv
+import sys, os, csv, signal
 from datetime import datetime, timezone, timedelta
 
 from config import PROFILE, DAYS_BACK, MAX_JOBS_PER_RUN, OUTPUT_DIR
 from matcher import score_job, get_matched_skills
 from sources import fetch_all
 from storage import init_db, save_jobs, get_saved_jobs, get_stats
+
+
+# Global timeout handler
+class TimeoutError(Exception):
+    pass
+
+def timeout_handler(signum, frame):
+    raise TimeoutError("Scraper timed out")
+
+# Set 4 minute timeout for the whole scraping process
+try:
+    signal.signal(signal.SIGALRM, timeout_handler)
+    signal.alarm(240)
+except:
+    pass  # Windows doesn't support SIGALRM
 
 
 def ensure_tz_aware(dt):
@@ -23,6 +36,7 @@ def ensure_tz_aware(dt):
 
 
 def filter_recent(jobs):
+    """Strict 7-day filter"""
     cutoff = datetime.now(timezone.utc) - timedelta(days=DAYS_BACK)
     result = []
     for j in jobs:
@@ -77,13 +91,13 @@ def save_csv(jobs, filename):
 
 def print_summary(jobs, limit=10):
     print(f"\n{'='*80}")
-    print(f"Top {min(limit, len(jobs))} Matching Jobs:")
+    print(f"Top {min(limit, len(jobs))} Matching Jobs (last {DAYS_BACK} days):")
     print(f"{'='*80}")
     for i, j in enumerate(jobs[:limit], 1):
         print(f"\n{i:2d}. [{j.get('score', 0):5.1f}%] {j['title']}")
         company = j.get("company", "") or "(unknown)"
         print(f"     {company}  |  {j.get('source', '')}")
-        print(f"     {j['link']}")
+        print(f"     {j['link'][:120]}")
         skills = j.get("matched_skills", "")
         if skills:
             print(f"     Skills: {skills[:120]}")
@@ -93,6 +107,7 @@ def main():
     print(f"\n{'='*60}")
     print(f"  Go/AI Job Scraper for {PROFILE['name']}")
     print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"  Filter: last {DAYS_BACK} days")
     print(f"{'='*60}\n")
 
     init_db()
@@ -110,20 +125,22 @@ def main():
         recent = filter_recent(deduped)
         print(f"Recent jobs: {len(recent)}")
 
-        print("\nScoring...")
-        scored = score_all(recent)
+        if recent:
+            print("\nScoring against your profile...")
+            scored = score_all(recent)
+            scored.sort(key=lambda x: x["score"], reverse=True)
 
-        print("\nSaving to database...")
-        saved = save_jobs(scored)
-        print(f"  New jobs saved: {saved}")
+            print("\nSaving to database...")
+            saved = save_jobs(scored)
+            print(f"  New jobs saved to DB")
+        else:
+            scored = []
 
     print("\nLoading top matching jobs from database...")
-    min_score = 5.0
-    saved_jobs = get_saved_jobs(min_score=min_score, limit=MAX_JOBS_PER_RUN)
+    saved_jobs = get_saved_jobs(min_score=1.0, limit=MAX_JOBS_PER_RUN)
 
     if not saved_jobs:
-        print(f"\n  No jobs with score >= {min_score}. Showing all jobs > 0:")
-        saved_jobs = get_saved_jobs(min_score=0.1, limit=MAX_JOBS_PER_RUN)
+        saved_jobs = get_saved_jobs(min_score=0, limit=MAX_JOBS_PER_RUN)
 
     if saved_jobs:
         today = datetime.now().strftime("%Y-%m-%d")
@@ -133,12 +150,16 @@ def main():
         stats = get_stats()
         print(f"\n{'='*60}")
         print(f"  DB Stats: {stats['total']} total, {stats['scored']} scored")
-        print(f"  Avg score: {stats['avg_score']}")
-        print(f"  Showing top {len(saved_jobs)} jobs")
+        print(f"  Avg match score: {stats['avg_score']}%")
+        print(f"  Showing top {len(saved_jobs)} jobs from last {DAYS_BACK} days")
         print(f"  CSV: {csv_path}")
         print(f"{'='*60}")
     else:
-        print("\nNo matching jobs found yet.")
+        print("\nNo jobs found in this run.")
+        print("Try:")
+        print("  1. Set up LinkedIn credentials in .env file")
+        print("  2. Add more sources to sources_config.json")
+        print("  3. Run: python -m playwright install chromium")
 
 
 if __name__ == "__main__":
