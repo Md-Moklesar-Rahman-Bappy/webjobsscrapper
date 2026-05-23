@@ -73,21 +73,16 @@ def save_csv(jobs, filename):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     path = os.path.join(OUTPUT_DIR, filename)
     with open(path, "w", newline="", encoding="utf-8-sig") as f:
-        w = csv.DictWriter(f, fieldnames=[
-            "score", "company", "title", "link", "posted", "matched_skills", "source"
-        ])
-        w.writeheader()
-        for j in jobs:
-            posted = ensure_tz_aware(j.get("posted"))
-            w.writerow({
-                "score": j.get("score", ""),
-                "company": j.get("company", ""),
-                "title": j["title"],
-                "link": j["link"],
-                "posted": posted.strftime("%Y-%m-%d %H:%M UTC"),
-                "matched_skills": j.get("matched_skills", ""),
-                "source": j.get("source", ""),
-            })
+        w = csv.writer(f)
+        w.writerow(["Date", "Company", "URL", "#"])
+        today = datetime.now().strftime("%m/%d/%Y")
+        for i, j in enumerate(jobs, 1):
+            w.writerow([
+                today,
+                j.get("company", j.get("source", "")),
+                j["link"],
+                i,
+            ])
     print(f"  Saved {len(jobs)} jobs to {path}")
     return path
 

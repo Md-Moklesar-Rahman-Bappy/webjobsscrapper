@@ -1,33 +1,37 @@
-﻿score,company,title,link,posted,matched_skills,source
-2.7,,"Senior Software Engineer, GOlang (API gateway)",https://euremotejobs.com/job/senior-software-engineer-golang-api-gateway/,2026-05-23 08:54 UTC,"golang, api",EuRemoteJobs
-1.7,,"Software Engineer, AI (Go)",https://www.indeed.com/rc/clk?jk=2090606ce0cd2a9d&bb=TOsMTr_NJJHyDE45SX4w8ADKF1J6TT6Dr7nhr8DsYGOOSh_oUeyV8YDLuk-3FiQc20wB0vE255OxbC8dKHHsHkgw6iU96fGpmsqwdl5Z3b1nB3e3ChuKMDJSx9VYzV-D8vkzRkul4cS2QrTMt4AS9c_ifuTr9rJndXrnd-yaWA88hnFd-DI1xg%3D%3D&xkcb=SoCt67M3jqJQ3lgO1D0CbzkdCdPP&fccid=e2dd68a36e2658ec&vjs=3,2026-05-23 08:55 UTC,"go, ai",Indeed
-0.0,,Lead Software Developer – Golang,https://euremotejobs.com/job/lead-software-developer-golang/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Senior Software Engineer – Golang (Data Platform),https://euremotejobs.com/job/senior-software-engineer-golang-data-platform/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Senior Golang Developer (IR-513),https://euremotejobs.com/job/senior-golang-developer-ir-513/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Senior Software Engineer – Python/Golang – Kubernetes,https://euremotejobs.com/job/senior-software-engineer-python-golang-kubernetes/,2026-05-23 08:54 UTC,"golang, kubernetes",EuRemoteJobs
-0.0,,Contract Senior Golang Engineer – UK based,https://euremotejobs.com/job/contract-senior-golang-engineer-uk-based/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Senior Backend Engineer – Golang,https://euremotejobs.com/job/senior-backend-engineer-golang/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,"Golang Software Engineer, Commercial Systems",https://euremotejobs.com/job/golang-software-engineer-commercial-systems/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,"Intermediate Backend Engineer (Golang), Monitor: Platform Insights",https://euremotejobs.com/job/intermediate-backend-engineer-golang-monitor-platform-insights/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,"C, Golang Software Engineer working on dqlite, a Raft extension for SQLite",https://euremotejobs.com/job/c-golang-software-engineer-working-on-dqlite-a-raft-extension-for-sqlite/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,"Golang Engineering Manager, Commercial Systems",https://euremotejobs.com/job/golang-engineering-manager-commercial-systems/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Software Engineer – Python/Golang – Kubernetes,https://euremotejobs.com/job/software-engineer-python-golang-kubernetes/,2026-05-23 08:54 UTC,"golang, kubernetes",EuRemoteJobs
-0.0,,"Senior Golang Software Engineer (Perm, UK, Remote)",https://euremotejobs.com/job/senior-golang-software-engineer-perm-uk-remote/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Senior GoLang Engineer,https://euremotejobs.com/job/senior-golang-engineer/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Senior Software Engineer (GOlang),https://euremotejobs.com/job/senior-software-engineer-golang/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Golang Backend Engineer – Nigeria,https://euremotejobs.com/job/golang-backend-engineer-nigeria/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Senior Golang Backend Engineer,https://euremotejobs.com/job/senior-golang-backend-engineer/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,"Senior Golang Engineer (Perm, Romania)",https://euremotejobs.com/job/senior-golang-engineer-perm-romania/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,"Senior Golang Software Engineer (Perm, Italy)",https://euremotejobs.com/job/senior-golang-software-engineer-perm-italy/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Golang Developer,https://euremotejobs.com/job/golang-developer/,2026-05-23 08:54 UTC,golang,EuRemoteJobs
-0.0,,Senior Software Engineer (Go),https://euremotejobs.com/job/senior-software-engineer-go/,2026-05-23 08:54 UTC,go,EuRemoteJobs
-0.0,,"Senior Software Engineer (Go, Kubernetes)-PerfectScale by DoiT",https://euremotejobs.com/job/senior-software-engineer-go-kubernetes-perfectscale-by-doit/,2026-05-23 08:54 UTC,"go, kubernetes",EuRemoteJobs
-0.0,,Senior Backend Engineer (Go),https://euremotejobs.com/job/senior-backend-engineer-go/,2026-05-23 08:54 UTC,go,EuRemoteJobs
-0.0,,Senior Software Engineer (Go),https://euremotejobs.com/job/senior-software-engineer-go-3/,2026-05-23 08:54 UTC,go,EuRemoteJobs
-0.0,,Go Developer (E-commerce),https://euremotejobs.com/job/go-developer-e-commerce/,2026-05-23 08:54 UTC,go,EuRemoteJobs
-0.0,A.Team,Senior Independent Software Developer,https://remotive.com/remote-jobs/software-development/senior-independent-software-developer-1919265,2026-05-23 08:54 UTC,go,RemotiveAPI
-0.0,Lemon.io,Senior Full-stack React Developer,https://remotive.com/remote-jobs/software-development/senior-full-stack-react-developer-2088711,2026-05-23 08:54 UTC,"golang, aws, gcp, typescript, javascript, react, ai, llm, machine learning",RemotiveAPI
-0.0,Lemon.io,Senior DevOps Engineer,https://remotive.com/remote-jobs/devops/senior-devops-engineer-2090002,2026-05-23 08:54 UTC,"golang, kubernetes, aws, gcp, terraform, typescript, javascript, react, ai, llm, machine learning",RemotiveAPI
-0.0,,Golang Developer,https://www.indeed.com/rc/clk?jk=cdbce35034938aaf&bb=TOsMTr_NJJHyDE45SX4w8ILjWfGB1dk_GV8tXya8gDxnprTHfFcnl8YWBVhUyFcvQzE-h5Z5bVoAiGxM_hM_v5ZYGHUpf6Ma8lI2LWFRxZuqWAnsmI8XfBhX6PZC9bLCbBn1yHLtGo1Ibmf3ioeMFM5r3CaYlBjkt6tEJ8bFu6U%3D&xkcb=SoBX67M3jqJQ3lgO1D0JbzkdCdPP&fccid=5dd92ecaabcaa985&vjs=3,2026-05-23 08:55 UTC,golang,Indeed
-0.0,,Golang Developer,https://www.indeed.com/viewjob?jk=456789abcdef0123,2026-05-23 08:55 UTC,golang,Indeed
-0.0,,Senior Go To Market Systems Engineer - Remote - US & Canada,https://www.indeed.com/rc/clk?jk=07f37e23e5b7d732&bb=TOsMTr_NJJHyDE45SX4w8MFtyrP7PDUxqA_0s5iup3v2NPXbUEDmKKtFCAhhnrXWz04Wtd0ls_CUCxfTOcTlV87m1ZNIJN8UeyA12GK9LnsW3rRu8NApiXPl5bBmgXufGBN2lxcq4uoTOYteZs4iNH-DjDH7lNvCUNAsq1vGkh4%3D&xkcb=SoDw67M3jqJQ3lgO1D0MbzkdCdPP&fccid=4fb138d3176337cc&vjs=3,2026-05-23 08:55 UTC,go,Indeed
+﻿Date,Company,URL,#
+5/23/2026,,https://euremotejobs.com/job/senior-software-engineer-golang-api-gateway/,1
+5/23/2026,,https://www.indeed.com/rc/clk?jk=2090606ce0cd2a9d&bb=P0x36O5IamDD0zCWJ7v8hqHn03kGoUgdmnOkPzIaCEyST8nNX49SGIsxZWbbGRpx5B9ThVL8ei77cDQHpR9FVyO_3luMcG9ba8Ss0rgeG089SGegMcA4KjrkK-km4_DjGXGihABetnHoCn2JBX32hM5FUc73VUmPrsQeGhT-nnkA9GP-iSacxQ%3D%3D&xkcb=SoBX67M3jqb4DVAWND0PbzkdCdPP&fccid=e2dd68a36e2658ec&vjs=3,2
+5/23/2026,,https://www.indeed.com/rc/clk?jk=2090606ce0cd2a9d&bb=TOsMTr_NJJHyDE45SX4w8ADKF1J6TT6Dr7nhr8DsYGOOSh_oUeyV8YDLuk-3FiQc20wB0vE255OxbC8dKHHsHkgw6iU96fGpmsqwdl5Z3b1nB3e3ChuKMDJSx9VYzV-D8vkzRkul4cS2QrTMt4AS9c_ifuTr9rJndXrnd-yaWA88hnFd-DI1xg%3D%3D&xkcb=SoCt67M3jqJQ3lgO1D0CbzkdCdPP&fccid=e2dd68a36e2658ec&vjs=3,3
+5/23/2026,,https://euremotejobs.com/job/lead-software-developer-golang/,4
+5/23/2026,,https://euremotejobs.com/job/senior-software-engineer-golang-data-platform/,5
+5/23/2026,,https://euremotejobs.com/job/senior-golang-developer-ir-513/,6
+5/23/2026,,https://euremotejobs.com/job/senior-software-engineer-python-golang-kubernetes/,7
+5/23/2026,,https://euremotejobs.com/job/contract-senior-golang-engineer-uk-based/,8
+5/23/2026,,https://euremotejobs.com/job/senior-backend-engineer-golang/,9
+5/23/2026,,https://euremotejobs.com/job/golang-software-engineer-commercial-systems/,10
+5/23/2026,,https://euremotejobs.com/job/intermediate-backend-engineer-golang-monitor-platform-insights/,11
+5/23/2026,,https://euremotejobs.com/job/c-golang-software-engineer-working-on-dqlite-a-raft-extension-for-sqlite/,12
+5/23/2026,,https://euremotejobs.com/job/golang-engineering-manager-commercial-systems/,13
+5/23/2026,,https://euremotejobs.com/job/software-engineer-python-golang-kubernetes/,14
+5/23/2026,,https://euremotejobs.com/job/senior-golang-software-engineer-perm-uk-remote/,15
+5/23/2026,,https://euremotejobs.com/job/senior-golang-engineer/,16
+5/23/2026,,https://euremotejobs.com/job/senior-software-engineer-golang/,17
+5/23/2026,,https://euremotejobs.com/job/golang-backend-engineer-nigeria/,18
+5/23/2026,,https://euremotejobs.com/job/senior-golang-backend-engineer/,19
+5/23/2026,,https://euremotejobs.com/job/senior-golang-engineer-perm-romania/,20
+5/23/2026,,https://euremotejobs.com/job/senior-golang-software-engineer-perm-italy/,21
+5/23/2026,,https://euremotejobs.com/job/golang-developer/,22
+5/23/2026,,https://euremotejobs.com/job/senior-software-engineer-go/,23
+5/23/2026,,https://euremotejobs.com/job/senior-software-engineer-go-kubernetes-perfectscale-by-doit/,24
+5/23/2026,,https://euremotejobs.com/job/senior-backend-engineer-go/,25
+5/23/2026,,https://euremotejobs.com/job/senior-software-engineer-go-3/,26
+5/23/2026,,https://euremotejobs.com/job/go-developer-e-commerce/,27
+5/23/2026,A.Team,https://remotive.com/remote-jobs/software-development/senior-independent-software-developer-1919265,28
+5/23/2026,Lemon.io,https://remotive.com/remote-jobs/software-development/senior-full-stack-react-developer-2088711,29
+5/23/2026,Lemon.io,https://remotive.com/remote-jobs/devops/senior-devops-engineer-2090002,30
+5/23/2026,,https://www.indeed.com/rc/clk?jk=cdbce35034938aaf&bb=P0x36O5IamDD0zCWJ7v8homS4DgwZqjbkJdZXJGQAeUcAU00QNBRU2xR6jQrxSoO-btffzCWcvLejRS0wY3MiSigQjVX_z17QObT0IVtW16lpdGRrWjRVgISX2zzRKPn6rwD6fN7_4slFXZWLovGSMiNqqxOqZHNNZoyqnnIHlc%3D&xkcb=SoBE67M3jqb4DVAWND0LbzkdCdPP&fccid=5dd92ecaabcaa985&vjs=3,31
+5/23/2026,,https://www.indeed.com/rc/clk?jk=5914c18394de47c7&bb=P0x36O5IamDD0zCWJ7v8hht7L2utc2qHFktgK0TL-yAbyyLAomR2Z7Rnp3-xC5CB_LYwlQnocyEMxPRNx4MQbGjAtIn6ukkDdW-Xt1HVnzzRKkts6swrSvo6Yp83WN4DaVtaE7XuMe7WutlGdpcHZf6NQqJ2gQJHYSsa1ACSs8nAxZdsPzMDoQ%3D%3D&xkcb=SoB-67M3jqb4DVAWND0NbzkdCdPP&fccid=58d1d947f73c01c2&cmp=Caresoft-Inc&ti=Software+Engineer&vjs=3,32
+5/23/2026,,https://www.indeed.com/rc/clk?jk=af08deee2d2339f0&bb=P0x36O5IamDD0zCWJ7v8hrHcwkedejlttz46UP_7jsUvjxJqgyWwlpZu-9X0NfE2-bivHR8b5jFahAiUhah0fWPo7DeWROUI2g_uuvnaYOp8CDTUWr5jmBQPe5pq9sFrJlnYPc4YVGoaGk0Mcfy9k9GdZAqW48C5OwzCVUUnEuq4aIherTouTw%3D%3D&xkcb=SoCX67M3jqb4DVAWND0CbzkdCdPP&fccid=fd01c2dc65d17636&cmp=Global-KTech&ti=Full+Stack+Developer&vjs=3,33
+5/23/2026,,https://www.indeed.com/rc/clk?jk=cdbce35034938aaf&bb=TOsMTr_NJJHyDE45SX4w8ILjWfGB1dk_GV8tXya8gDxnprTHfFcnl8YWBVhUyFcvQzE-h5Z5bVoAiGxM_hM_v5ZYGHUpf6Ma8lI2LWFRxZuqWAnsmI8XfBhX6PZC9bLCbBn1yHLtGo1Ibmf3ioeMFM5r3CaYlBjkt6tEJ8bFu6U%3D&xkcb=SoBX67M3jqJQ3lgO1D0JbzkdCdPP&fccid=5dd92ecaabcaa985&vjs=3,34
+5/23/2026,,https://www.indeed.com/viewjob?jk=456789abcdef0123,35
+5/23/2026,,https://www.indeed.com/rc/clk?jk=07f37e23e5b7d732&bb=TOsMTr_NJJHyDE45SX4w8MFtyrP7PDUxqA_0s5iup3v2NPXbUEDmKKtFCAhhnrXWz04Wtd0ls_CUCxfTOcTlV87m1ZNIJN8UeyA12GK9LnsW3rRu8NApiXPl5bBmgXufGBN2lxcq4uoTOYteZs4iNH-DjDH7lNvCUNAsq1vGkh4%3D&xkcb=SoDw67M3jqJQ3lgO1D0MbzkdCdPP&fccid=4fb138d3176337cc&vjs=3,36
