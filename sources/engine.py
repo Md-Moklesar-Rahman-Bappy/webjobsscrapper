@@ -179,10 +179,21 @@ def scrape_playwright(source):
             if login_config.get("required", False) and username and password and login_url:
                 print(f"    Logging into {source['name']}...")
                 page.goto(login_url, wait_until="domcontentloaded", timeout=30000)
+                # Dismiss cookie/consent overlays
+                try:
+                    overlay_btns = page.query_selector_all("button:has-text('Accept'), button:has-text('Accept All'), button:has-text('Allow'), button:has-text('Reject'), button:has-text('Reject All'), button:has-text('Close'), div[class*='cookie'] button")
+                    for btn in overlay_btns:
+                        if btn.is_visible():
+                            btn.click()
+                            page.wait_for_timeout(1000)
+                            break
+                except:
+                    pass
+                page.wait_for_timeout(1000)
                 page.fill(login_config["username_field"], username)
                 page.fill(login_config["password_field"], password)
                 page.click(login_config["submit_button"])
-                time.sleep(3)
+                page.wait_for_timeout(5000)
 
             # Navigate to search URL
             print(f"    Loading {source['name']}...")

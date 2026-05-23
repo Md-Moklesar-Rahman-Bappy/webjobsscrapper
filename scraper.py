@@ -1,5 +1,8 @@
 import sys, os, csv, signal
 from datetime import datetime, timezone, timedelta
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from config import PROFILE, DAYS_BACK, MAX_JOBS_PER_RUN, OUTPUT_DIR
 from matcher import score_job, get_matched_skills

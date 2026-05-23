@@ -1,50 +1,39 @@
-"""Debug WTTJ job search URL"""
 from playwright.sync_api import sync_playwright
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 with sync_playwright() as pw:
     browser = pw.chromium.launch(headless=True)
-    page = browser.new_page(viewport={"width": 1920, "height": 1080})
+    page = browser.new_page(viewport={"width": 1280, "height": 800})
     
-    # Login
-    print("Logging into WTTJ...")
-    page.goto("https://app.welcometothejungle.com/auth/sign-in", wait_until="domcontentloaded", timeout=15000)
-    page.fill("input[name='email']", "ronluke11652@gmail.com")
-    page.fill("input[name='password']", "Sm@rtlee0208!!")
+    # WTTJ login
+    print("=== WTTJ Login ===")
+    page.goto("https://app.welcometothejungle.com/auth/sign-in", wait_until="domcontentloaded", timeout=30000)
+    page.wait_for_timeout(2000)
+    page.fill("input[name='email']", os.environ.get("WTTJ_EMAIL", ""))
+    page.fill("input[name='password']", os.environ.get("WTTJ_PASS", ""))
     page.click("button[type='submit']")
     page.wait_for_timeout(5000)
-    print(f"After login URL: {page.url}")
     
-    # Try the jobs URL again
-    print("\nNavigating to jobs search...")
-    page.goto("https://app.welcometothejungle.com/en/jobs", wait_until="domcontentloaded", timeout=15000)
+    print(f"URL after login: {page.url}")
+    
+    # Go to jobs search
+    page.goto("https://app.welcometothejungle.com/jobs?query=golang", wait_until="domcontentloaded", timeout=30000)
     page.wait_for_timeout(3000)
-    print(f"After navigate URL: {page.url}")
-    print(f"Title: {page.title()}")
+    print(f"URL after search: {page.url}")
     
-    # Screenshot for debugging
-    page.screenshot(path="wttj.png")
-    print("Screenshot saved to wttj.png")
+    # Print page content
+    body = page.inner_text("body")[:2000]
+    print(f"Body text: {body[:1000]}")
     
-    # Check what's on the page
-    body = page.inner_text("body")
-    print(f"\nBody text (first 500 chars): {body[:500]}")
+    # Find all job-like elements
+    for sel in ["a[href*='/jobs/']", "[data-testid*='job']", "article", "div[class*=card]", "div[class*=job]", "li[class*=job]"]:
+        els = page.query_selector_all(sel)
+        print(f"  Selector '{sel}': {len(els)} elements")
+        for el in els[:3]:
+            text = (el.inner_text() or "")[:80]
+            href = el.get_attribute("href") or ""
+            print(f"    text='{text}' href='{href[:60]}'")
     
-    # Check all links
-    links = page.query_selector_all("a")
-    job_links = [l for l in links if l.get_attribute("href") and "job" in (l.get_attribute("href") or "").lower()]
-    print(f"\nJob-related links: {len(job_links)}")
-    for link in job_links[:10]:
-        txt = (link.inner_text() or "").strip()[:60]
-        href = link.get_attribute("href") or ""
-        print(f"  '{txt}' -> {href[:100]}")
-
-    # Check for any dynamic content containers
-    containers = page.query_selector_all("div[class*='container'], main, section, [role='main']")
-    print(f"\nMain containers: {len(containers)}")
-    for c in containers[:5]:
-        cls = c.get_attribute("class") or ""
-        txt = (c.inner_text() or "").strip()[:100]
-        if txt:
-            print(f"  class='{cls}' txt='{txt}'")
-
     browser.close()
